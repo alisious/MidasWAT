@@ -40,18 +40,37 @@ namespace Eris.Bazowy
             return new SelectList(JednostkiOrg, "Id", "Nazwa", selectedId);
         }
 
+        public SelectList ListaWyboruJednostekSadow(int selectedId = 0)
+        {
+            return ListaWyboru<JednostkaOrg>(selectedId, "SĄD");
+        }
+
+        public SelectList ListaWyboruJednostekZandarmerii(int selectedId = 0)
+        {
+            return ListaWyboru<JednostkaOrg>(selectedId, "ŻW");
+        }
+
+        
         public JednostkaOrg JednostkaOrg(int id)
         {
             return JednostkiOrg.FirstOrDefault(j => j.Id == id);
         }
 
-        public SelectList ListaWyboru<T>(int selectedId = 0) where T : PozycjaSlownika
+        public SelectList ListaWyboru<T>(int selectedId = 0,string grupa = "") where T : PozycjaSlownika
         {
 
-            return new SelectList(Set<T>().AsEnumerable(), "Id", "Nazwa", selectedId);
+            var l = Set<T>().AsQueryable();
+            if (!String.IsNullOrWhiteSpace(grupa))
+            {
+                l = l.Where(e => e.Grupa == grupa);
+            }
+            return new SelectList(l.AsEnumerable(), "Id", "Nazwa", selectedId);
 
         }
 
+
+
+        
         public SelectList ListaWyboruPlci(string plec)
         {
             return new SelectList(Plec.Lista, "Nazwa", "Nazwa", plec);
