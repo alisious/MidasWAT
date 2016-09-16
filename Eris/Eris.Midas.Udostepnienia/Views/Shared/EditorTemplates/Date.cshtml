@@ -1,0 +1,33 @@
+﻿@model DateTime?
+@Html.TextBoxFor(model => Model,"{0:yyyy-MM-dd}",new { @class = "form-control date-picker"})
+
+
+    <script>
+        $(function () {
+
+            $(".date-picker").datepicker({
+                changeMonth: true,
+                changeYear: true,
+                closeText: 'Zamknij',
+                prevText: '&#x3C;Poprzedni',
+                nextText: 'Następny&#x3E;',
+                currentText: 'Dziś',
+                monthNames: ['Styczeń', 'Luty', 'Marzec', 'Kwiecień', 'Maj', 'Czerwiec', 'Lipiec', 'Sierpień', 'Wrzesień', 'Październik', 'Listopad', 'Grudzień'],
+                monthNamesShort: ['Sty', 'Lu', 'Mar', 'Kw', 'Maj', 'Cze', 'Lip', 'Sie', 'Wrz', 'Pa', 'Lis', 'Gru'],
+                dayNames: ['Niedziela', 'Poniedziałek', 'Wtorek', 'Środa', 'Czwartek', 'Piątek', 'Sobota'],
+                dayNamesShort: ['Nie', 'Pn', 'Wt', 'Śr', 'Czw', 'Pt', 'So'],
+                dayNamesMin: ['N', 'Pn', 'Wt', 'Śr', 'Cz', 'Pt', 'So'],
+                weekHeader: 'Tydz',
+                dateFormat: 'yy-mm-dd',
+                firstDay: 1,
+                isRTL: false,
+                showMonthAfterYear: false,
+                yearSuffix: ''
+
+            });
+     
+        });
+
+
+    </script>
+
